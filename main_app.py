@@ -5,13 +5,15 @@ import utils
 import intro_app
 import data_app
 import eda_app
+import stat_app
 
 def main():
+    st.set_page_config(layout="wide")
     with st.sidebar:
         selected = option_menu("Main Menu", ["INTRO", "DATA", "EDA", "STAT", "ML"],
                                icons=["house", "card-checklist", "bar-chart", "clipboard-data", "gear"],
                                menu_icon="cast",
-                               default_index=1,
+                               default_index=0,
                                orientation="vertical")
     st.title("Store Sales")
 
