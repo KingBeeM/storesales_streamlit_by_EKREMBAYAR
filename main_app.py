@@ -6,6 +6,7 @@ import intro_app
 import data_app
 import eda_app
 import stat_app
+import ml_app
 
 def main():
     st.set_page_config(layout="wide")
@@ -24,9 +25,9 @@ def main():
     if selected == "EDA":
         eda_app.eda_app()
     if selected == "STAT":
-        st.subheader("STATS")
+        stat_app.stat_app()
     if selected == "ML":
-        st.subheader("Machine Learning")
+        ml_app.ml_app()
 
 if __name__ == "__main__":
     main()

@@ -90,7 +90,6 @@ def fig_Transactions_TotalSales_Correlation(temp, transactions):
     fig = px.line(transactions.sort_values(["store_nbr", "date"]), x="date", y="transactions", color="store_nbr", title="Transactions")
     st.plotly_chart(fig)
 
-
 def fig_Transactions_ym_patten1(transactions):
     """
     Transactions 데이터의 연도별, 월별 패턴 파악 하는 그래프
@@ -233,6 +232,8 @@ def fig_Train_store_TotalSales_patten(train):
     fig, ax = plt.subplots()
     fig = px.line(a, x="date", y="sales", color="store_nbr", title="Daily Total Sales of The Stores")
     st.plotly_chart(fig)
+
+
 def fig_unsold_family(train):
     """
     판매 되지 않는 제품 군 파악 하는 그래프
@@ -413,11 +414,13 @@ def eda_app():
 
     # Sales
     if selected_data == "Train":
-        selected_chart = st.sidebar.selectbox("SELECT Chart", ["1", "2", "3", "4", "5", "6"])
+        selected_chart = st.sidebar.selectbox("SELECT Chart", ["1", "2", "3", "4", "5"])
 
+#        if selected_chart == "1":
+#            # 각 매장별 Sales 에 대한 상관 관계 그래프
+#            fig_Train_sales_Correlation(train)
         if selected_chart == "1":
-            fig_Train_sales_Correlation(train)
-        if selected_chart == "2":
+            # 각 매장 별 Total Sales 패턴 파악
             fig_Train_store_TotalSales_patten(train)
 
         ## 이상치 제거 : 매장별로 오픈하기 전의 시점
@@ -447,19 +450,19 @@ def eda_app():
             }))
         zero_prediction = pd.concat(zero_prediction)
 
-        if selected_chart == "3":
+        if selected_chart == "2":
             ## 판매 되지 않는 제품군 파악
             fig_unsold_family(train)
 
-        if selected_chart == "4":
+        if selected_chart == "3":
             ## 일별 제품 판매 패턴 파악
             fig_Train_d_family_patten(train)
 
-        if selected_chart == "5":
+        if selected_chart == "4":
             ## 제품별 판매 패턴 파악
             fig_Train_family_patten(train)
 
-        if selected_chart == "6":
+        if selected_chart == "5":
             ## 매장 별 판매 패턴
             fig_Train_Stores_patten(train, stores)
 
